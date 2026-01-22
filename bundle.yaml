@@ -1,0 +1,14 @@
+apiVersion: 2
+id: oc-bundle
+description: "Operations Center CasC bundle – baseline (no RBAC)"
+
+jcasc:
+  - jcasc/jenkins.yaml
+jcascMergeStrategy: errorOnConflict
+
+plugins:
+  - plugins/plugins.yaml
+
+items:
+  - items/items.yaml
+
