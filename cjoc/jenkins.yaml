@@ -1,5 +1,8 @@
 jenkins:
-  systemMessage: "CloudBees CJOC – GitOps, Keycloak SSO, Shared Agents Enabled"
+  systemMessage: |
+    CloudBees Operations Center
+    Authentication: Keycloak (OIDC)
+    Configuration managed by CasC (GitOps)
 
   securityRealm:
     keycloak:
@@ -8,7 +11,7 @@ jenkins:
           "realm": "cloudbees",
           "auth-server-url": "https://keycloak.14.195.56.220.nip.io/",
           "ssl-required": "external",
-          "resource": "cloudbees",
+          "resource": "cjoc",
           "public-client": true,
           "confidential-port": 0
         }
