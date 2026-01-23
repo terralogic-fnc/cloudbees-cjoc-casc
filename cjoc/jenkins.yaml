@@ -1,21 +1,63 @@
 jenkins:
-  systemMessage: |
-    CloudBees Operations Center
-    Authentication: Keycloak (OIDC)
-    Configuration managed by CasC (GitOps)
+  systemMessage: "Operations Center configured using CloudBees CasC"
+  numExecutors: 0
 
+  authorizationStrategy: cloudBeesRoleBasedAccessControl
+
+  # =========================
+  # SSO (Keycloak via OIDC)
+  # =========================
   securityRealm:
-    keycloak:
-      keycloakJson: |
-        {
-          "realm": "cloudbees",
-          "auth-server-url": "https://keycloak.14.195.56.220.nip.io/",
-          "ssl-required": "external",
-          "resource": "cjoc",
-          "public-client": true,
-          "confidential-port": 0
-        }
+    oic:
+      clientId: cloudbees
+      clientSecret: none
 
-  authorizationStrategy:
-    cloudBeesRoleBasedAccessControl: {}
+      wellKnownOpenIDConfigurationUrl: >
+        https://keycloak.14.195.56.220.nip.io/realms/cloudbees/.well-known/openid-configuration
+
+      disableSslVerification: true   # TEMPORARY (remove after cert trust is fixed)
+
+      scopes:
+        - openid
+        - profile
+        - email
+        - groups
+
+      userNameField: preferred_username
+      fullNameFieldName: name
+      emailFieldName: email
+      groupsFieldName: groups
+
+      # =========================
+      # SSO Relay enablement
+      # =========================
+      properties:
+        - relay
+
+security:
+  securitySettingsEnforcement:
+    global:
+      realmAndAuthorization:
+        canCustomMapping: false
+        canOverride: true
+        defaultMappingFactory: "restrictedEquivalentRAMF"
+
+  controllerExecutorCount:
+    enforce:
+      canOverride: false
+      count: 0
+
+cloudBeesCasCServer:
+  visibility: true
+
+unclassified:
+  cascAutoControllerProvisioning:
+    provisionControllerOnCreation: true
+    fireAndForget: true
+    initialDelay: 15
+    timeout: 600
+    duration: 60
+
+  location:
+    url: https://cjoc.14.195.56.220.nip.io/
 

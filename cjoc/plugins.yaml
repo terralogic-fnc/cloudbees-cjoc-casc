@@ -30,3 +30,16 @@ plugins:
   - id: command-launcher
   - id: ssh-slaves
 
+  - id: configuration-as-code
+  - id: cloudbees-casc-client
+  - id: cloudbees-casc-items-api
+  - id: cloudbees-casc-items-server
+  - id: cloudbees-casc-shared
+
+  - id: operations-center-context
+  - id: operations-center-agent
+  - id: operations-center-rbac
+
+  - id: oic-auth
+  - id: cloudbees-sso-relay-oidc
+
