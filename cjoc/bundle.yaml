@@ -1,11 +1,11 @@
-id: "bundle-1"
+id: "cjoc-bundle"
 version: "1"
 apiVersion: "2"
-description: "My CloudBees Configuration as Code (CasC) bundle"
+
+description: "CJOC GitOps CasC bundle"
 
 jcasc:
   - "jenkins.yaml"
-
 jcascMergeStrategy: "errorOnConflict"
 
 plugins:
@@ -17,5 +17,9 @@ items:
 rbac:
   - "rbac.yaml"
 
+credentials:
+  - "credentials.yaml"
 
+variables:
+  - "variables.yaml"
 
