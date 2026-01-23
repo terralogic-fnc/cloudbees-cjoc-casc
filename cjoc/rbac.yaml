@@ -1,0 +1,12 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+
+roles:
+  global:
+    - name: admin
+      permissions:
+        - Overall/Administer
+      members:
+        - "keycloak:admins"
+

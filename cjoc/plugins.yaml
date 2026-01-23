@@ -1,0 +1,32 @@
+plugins:
+  # -------------------------------------------------
+  # CasC Core (REQUIRED)
+  # -------------------------------------------------
+  - id: configuration-as-code
+  - id: cloudbees-casc-client
+  - id: cloudbees-casc-items-api
+  - id: cloudbees-casc-items-commons
+  - id: cloudbees-casc-items-server
+  - id: cloudbees-casc-shared
+
+  # -------------------------------------------------
+  # Operations Center Core (REQUIRED)
+  # -------------------------------------------------
+  - id: operations-center-context
+  - id: operations-center-cloud
+  - id: operations-center-agent
+  - id: operations-center-rbac
+
+  # -------------------------------------------------
+  # Kubernetes Agents (🔥 REQUIRED FOR POD AGENTS 🔥)
+  # -------------------------------------------------
+  - id: kubernetes
+  - id: kubernetes-client-api
+  - id: kubernetes-credentials
+
+  # -------------------------------------------------
+  # Agent / Launchers (RECOMMENDED)
+  # -------------------------------------------------
+  - id: command-launcher
+  - id: ssh-slaves
+
