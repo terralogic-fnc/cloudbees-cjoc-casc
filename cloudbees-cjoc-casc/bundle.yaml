@@ -1,16 +1,12 @@
 apiVersion: 2
-id: cloudbees-cjoc-casc
 version: "1"
-
-description: "Operations Center CasC bundle"
+id: "cjoc-bundle"
+description: "CJOC CasC – Keycloak SSO, RBAC, Shared Agents ENABLED"
 
 jcasc:
-  - jcasc/jenkins.yaml
-jcascMergeStrategy: errorOnConflict
+  - jenkins.yaml
+  - rbac.yaml
 
 plugins:
-  - plugins/plugins.yaml
-
-items:
-  - items/items.yaml
+  - plugins.yaml
 
