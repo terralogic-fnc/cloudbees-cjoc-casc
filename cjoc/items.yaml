@@ -1,26 +1,43 @@
 removeStrategy:
-  items: "none"
+  items: none
+  rbac: sync
 
 items:
-  - kind: "sharedCloud"
-    name: "shared-inbound-agents"
-    displayName: "Shared Inbound Agents"
-    description: "Shared inbound agents for Operations Center"
+  - kind: sharedCloud
+    name: shared-k8s-cloud
+    displayName: "Shared Kubernetes Cloud"
+    description: "Shared Kubernetes agents for all controllers"
     takeOnline: true
 
     properties:
       - sharedCloud: {}
 
     cloud:
-      inboundAgents:
-        mode: EXCLUSIVE
-        numExecutors: 5
-        remoteFS: "/home/jenkins"
-        labels: "shared-agent"
+      kubernetes:
+        name: shared-k8s
+        serverUrl: https://kubernetes.default.svc
+        namespace: cloudbees-builds
+        jenkinsUrl: http://cjoc.cloudbees.svc.cluster.local/cjoc
+        containerCap: 50
+        skipTlsVerify: true
 
-        launcher:
-          inboundAgent:
-            webSocket: true
-            agentStartupOptions: "-noCertificateCheck"
-            vmargs: "-Xms512m -Xmx1024m"
+        templates:
+          - name: devops-agent
+            label: devops-agent
+            namespace: cloudbees-builds
+            serviceAccount: jenkins-agents
+
+            containers:
+              - name: jnlp
+                image: kamalakar2210/devops_image:latest
+                workingDir: /home/jenkins/agent
+                ttyEnabled: true
+
+                resources:
+                  requests:
+                    cpu: "500m"
+                    memory: "1Gi"
+                  limits:
+                    cpu: "1"
+                    memory: "2Gi"
 

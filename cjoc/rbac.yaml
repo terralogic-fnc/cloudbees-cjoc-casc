@@ -1,5 +1,5 @@
 removeStrategy:
-  rbac: "sync"
+  rbac: sync
 
 roles:
   - name: administer
@@ -10,7 +10,6 @@ groups:
   - name: Administrators
     roles:
       - name: administer
-        grantedAt: current
     members:
       users:
         - admin
