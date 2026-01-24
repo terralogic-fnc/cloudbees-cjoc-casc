@@ -1,12 +1,17 @@
-removeStrategy: sync
+removeStrategy:
+  rbac: "sync"
 
 roles:
-  - name: administrators
+  - name: administer
     permissions:
-      - Overall/Administer
-    assignments:
-      - group: admins
+      - hudson.model.Hudson.Administer
 
 groups:
-  - name: admins
+  - name: Administrators
+    roles:
+      - name: administer
+        grantedAt: current
+    members:
+      users:
+        - admin
 
