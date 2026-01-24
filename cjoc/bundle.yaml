@@ -1,25 +1,19 @@
 id: "cjoc-bundle"
 version: "1"
 apiVersion: "2"
-
 description: "CJOC GitOps CasC bundle"
 
 jcasc:
-  - "jenkins.yaml"
-jcascMergeStrategy: "errorOnConflict"
+  - jenkins.yaml
+
+jcascMergeStrategy: errorOnConflict
 
 plugins:
-  - "plugins.yaml"
+  - plugins.yaml
 
 items:
-  - "items.yaml"
+  - items.yaml
 
 rbac:
-  - "rbac.yaml"
-
-credentials:
-  - "credentials.yaml"
-
-variables:
-  - "variables.yaml"
+  - rbac.yaml
 

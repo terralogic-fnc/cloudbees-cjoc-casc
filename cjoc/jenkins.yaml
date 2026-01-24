@@ -2,37 +2,22 @@ jenkins:
   systemMessage: "Operations Center configured using CloudBees CasC"
   numExecutors: 0
 
-  authorizationStrategy: cloudBeesRoleBasedAccessControl
-
   # =========================
-  # SSO (Keycloak via OIDC)
+  # SECURITY REALM – LOCAL
   # =========================
   securityRealm:
-    oic:
-      clientId: cloudbees
-      clientSecret: none
+    local:
+      allowsSignup: false
+      users:
+        - id: admin
+          name: "CJOC Admin"
+          password: ${CJOC_ADMIN_PASSWORD}
 
-      wellKnownOpenIDConfigurationUrl: >
-        https://keycloak.14.195.56.220.nip.io/realms/cloudbees/.well-known/openid-configuration
-
-      disableSslVerification: true   # TEMPORARY (remove after cert trust is fixed)
-
-      scopes:
-        - openid
-        - profile
-        - email
-        - groups
-
-      userNameField: preferred_username
-      fullNameFieldName: name
-      emailFieldName: email
-      groupsFieldName: groups
-
-      # =========================
-      # SSO Relay enablement
-      # =========================
-      properties:
-        - relay
+  # =========================
+  # AUTHORIZATION – RBAC
+  # =========================
+  authorizationStrategy:
+    cloudBeesRoleBasedAccessControl: {}
 
 security:
   securitySettingsEnforcement:
@@ -59,5 +44,5 @@ unclassified:
     duration: 60
 
   location:
-    url: https://cjoc.14.195.56.220.nip.io/
+    url: "https://cjoc.14.195.56.220.nip.io/"
 
