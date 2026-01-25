@@ -6,8 +6,6 @@ description: "Minimal CJOC CasC bundle"
 jcasc:
   - "jenkins.yaml"
 
-plugins:
-  - "plugins.yaml"
 
 rbac:
   - "rbac.yaml"
