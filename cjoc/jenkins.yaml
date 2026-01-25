@@ -1,3 +1,20 @@
+#jenkins:
+#  systemMessage: |
+#    CloudBees Operations Center
+#    Basic authentication
+#    Managed by CasC
+
+#  numExecutors: 0
+#  mode: NORMAL
+
+#  securityRealm:
+#    local:
+#      allowsSignup: false
+#      users:
+#        - id: admin
+#          password: ${CJOC_ADMIN_PASSWORD}
+
+#  authorizationStrategy: cloudBeesRoleBasedAccessControl
 jenkins:
   systemMessage: |
     CloudBees Operations Center
@@ -15,5 +32,38 @@ jenkins:
           password: ${CJOC_ADMIN_PASSWORD}
 
   authorizationStrategy: cloudBeesRoleBasedAccessControl
+
+# =================================================
+# REQUIRED FOR CONTROLLER CREATION
+# =================================================
+cloudBeesCasCServer:
+  visibility: true
+
+unclassified:
+  cascAutoControllerProvisioning:
+    provisionControllerOnCreation: true
+    fireAndForget: true
+    initialDelay: 15
+    timeout: 600
+    duration: 60
+
+  location:
+    url: https://cjoc.14.195.56.220.nip.io/cjoc
+
+  bundleStorageService:
+    activated: true
+    activeBundle:
+      name: "git"
+      retriever:
+        SCM:
+          scmSource:
+            git:
+              id: "cjoc-casc-repo"
+              remote: "https://github.com/terralogic-fnc/cloudbees-cjoc-casc.git"
+              traits:
+                - gitBranchDiscovery
+    pollingPeriod: 0
+    purgeOnDeactivation: false
+
 
 
