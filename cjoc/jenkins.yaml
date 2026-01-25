@@ -9,7 +9,8 @@ jenkins:
 
   securityRealm:
     saml:
-      idpMetadataUrl: "https://login.microsoftonline.com/5959310f-363b-441f-90f2-eb9f32a53370/federationmetadata/2007-06/federationmetadata.xml?appid=eb327790-42a1-4a06-ba33-eddd365cfccb"
+      idpMetadataConfiguration:
+        url: "https://login.microsoftonline.com/5959310f-363b-441f-90f2-eb9f32a53370/federationmetadata/2007-06/federationmetadata.xml?appid=eb327790-42a1-4a06-ba33-eddd365cfccb"
 
       refreshPeriod: 1440
 
