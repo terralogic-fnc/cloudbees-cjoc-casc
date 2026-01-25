@@ -9,6 +9,4 @@ jcasc:
 plugins:
   - "plugins.yaml"
 
-rbac:
-  - "rbac.yaml"
 
