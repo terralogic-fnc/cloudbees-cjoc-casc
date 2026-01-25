@@ -10,7 +10,7 @@ items:
 
     properties:
       - configurationAsCode:
-          bundle: mc-alpha-bundle
+          bundle: mc-alpha
 
       - healthReporting:
           enabled: false
