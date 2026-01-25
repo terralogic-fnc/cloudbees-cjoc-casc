@@ -9,3 +9,6 @@ jcasc:
 
 rbac:
   - "rbac.yaml"
+
+items:
+  - items.yaml
