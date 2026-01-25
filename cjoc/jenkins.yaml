@@ -1,31 +1,21 @@
 jenkins:
   systemMessage: |
     CloudBees Operations Center
-    Authentication via Microsoft Entra ID (SAML)
-    Managed by Configuration as Code
+    Authentication: LOCAL USER DATABASE
+    Bootstrap mode
 
   numExecutors: 0
   mode: NORMAL
 
   securityRealm:
-    saml:
-      # ---- REQUIRED (cannot be null) ----
-      idpMetadataConfiguration:
-        url: "https://login.microsoftonline.com/5959310f-363b-441f-90f2-eb9f32a53370/federationmetadata/2007-06/federationmetadata.xml?appid=eb327790-42a1-4a06-ba33-eddd365cfccb"
+    local:
+      allowsSignup: false
 
-      # ---- REQUIRED even if unused ----
-      groupsAttributeName: "groups"   # dummy value, required by constructor
-      logoutUrl: ""                   # must be present, empty is OK
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
 
-      # ---- Attribute mapping ----
-      displayNameAttributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-      usernameAttributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
-      emailAttributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
-
-      # ---- Session & protocol ----
-      maximumAuthenticationLifetime: 86400
-      binding: "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-
-  remotingSecurity:
-    enabled: true
+unclassified:
+  location:
+    url: https://cjoc.14.195.56.220.nip.io/
 
