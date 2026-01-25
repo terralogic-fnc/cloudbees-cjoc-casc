@@ -16,6 +16,4 @@ jenkins:
 
   authorizationStrategy: cloudBeesRoleBasedAccessControl
 
-remotingSecurity:
-  enabled: true
 
