@@ -2,17 +2,18 @@ removeStrategy:
   rbac: SYNC
 
 roles:
-- name: cjoc-admin
-  permissions:
-  - com.cloudbees.opscenter.server.security.Administer
+  - name: cjoc-admin
+    permissions:
+      - hudson.model.Hudson.Administer
 
 groups:
-- name: CJOC-Admins
-  roles:
-  - name: cjoc-admin
-  members:
-    users:
-      - Anusha.Thanga@mycloudhostings.shop
-      - Harshavardhan.Reddy.Seepareddy@mycloudhostings.shop
-      - kamalakar.reddy@mycloudhostings.shop
+  - name: CJOC-Admins
+    roles:
+      - name: cjoc-admin
+        grantedAt: current
+    members:
+      users:
+        - Anusha.Thanga@mycloudhostings.shop
+        - Harshavardhan.Reddy.Seepareddy@mycloudhostings.shop
+        - kamalakar.reddy@mycloudhostings.shop
 
