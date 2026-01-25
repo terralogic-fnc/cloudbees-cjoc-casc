@@ -12,3 +12,6 @@ rbac:
 
 items:
   - items.yaml
+
+plugins:
+  - "plugins.yaml"
