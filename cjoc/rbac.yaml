@@ -1,6 +1,3 @@
-apiVersion: "1"
-kind: "rbac"
-
 removeStrategy:
   rbac: SYNC
 
