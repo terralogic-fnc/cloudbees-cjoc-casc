@@ -13,7 +13,5 @@ groups:
         grantedAt: current
     members:
       users:
-        - Anusha.Thanga@mycloudhostings.shop
-        - Harshavardhan.Reddy.Seepareddy@mycloudhostings.shop
-        - kamalakar.reddy@mycloudhostings.shop
+        - admin
 
