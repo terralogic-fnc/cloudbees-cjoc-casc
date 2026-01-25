@@ -1,48 +1,12 @@
 jenkins:
-  systemMessage: "Operations Center configured using CloudBees CasC"
+  systemMessage: "CloudBees Operations Center - Minimal CasC"
   numExecutors: 0
+  mode: NORMAL
 
-  # =========================
-  # SECURITY REALM – LOCAL
-  # =========================
-  securityRealm:
-    local:
-      allowsSignup: false
-      users:
-        - id: admin
-          name: "CJOC Admin"
-          password: ${CJOC_ADMIN_PASSWORD}
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
 
-  # =========================
-  # AUTHORIZATION – RBAC
-  # =========================
-  authorizationStrategy:
-    cloudBeesRoleBasedAccessControl: {}
-
-security:
-  securitySettingsEnforcement:
-    global:
-      realmAndAuthorization:
-        canCustomMapping: false
-        canOverride: true
-        defaultMappingFactory: "restrictedEquivalentRAMF"
-
-  controllerExecutorCount:
-    enforce:
-      canOverride: false
-      count: 0
-
-cloudBeesCasCServer:
-  visibility: true
-
-unclassified:
-  cascAutoControllerProvisioning:
-    provisionControllerOnCreation: true
-    fireAndForget: true
-    initialDelay: 15
-    timeout: 600
-    duration: 60
-
-  location:
-    url: "https://cjoc.14.195.56.220.nip.io/"
+  remotingSecurity:
+    enabled: true
 

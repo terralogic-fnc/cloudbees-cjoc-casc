@@ -1,19 +1,14 @@
-id: "cjoc-bundle"
+apiVersion: "1"
+id: "cjoc-minimal"
 version: "1"
-apiVersion: "2"
-description: "CJOC GitOps CasC bundle"
+description: "Minimal CJOC CasC bundle"
 
 jcasc:
-  - jenkins.yaml
-
-jcascMergeStrategy: errorOnConflict
+  - "jenkins.yaml"
 
 plugins:
-  - plugins.yaml
-
-items:
-  - items.yaml
+  - "plugins.yaml"
 
 rbac:
-  - rbac.yaml
+  - "rbac.yaml"
 

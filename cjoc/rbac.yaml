@@ -1,16 +1,19 @@
+apiVersion: "1"
+kind: "rbac"
+
 removeStrategy:
-  rbac: sync
+  rbac: SYNC
 
 roles:
-  - name: administer
-    permissions:
-      - hudson.model.Hudson.Administer
+- name: administer
+  permissions:
+  - hudson.model.Jenkins.Administer
 
 groups:
-  - name: Administrators
-    roles:
-      - name: administer
-    members:
-      users:
-        - admin
+- name: Administrators
+  roles:
+  - name: administer
+  members:
+    users:
+    - admin
 
