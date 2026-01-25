@@ -1,11 +1,25 @@
 jenkins:
-  systemMessage: "CloudBees Operations Center - Minimal CasC"
+  systemMessage: |
+    CloudBees Operations Center
+    Authentication via Microsoft Entra ID (SAML)
+    Managed by Configuration as Code
+
   numExecutors: 0
   mode: NORMAL
 
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: true
+  securityRealm:
+    saml:
+      idpMetadataUrl: "https://login.microsoftonline.com/5959310f-363b-441f-90f2-eb9f32a53370/federationmetadata/2007-06/federationmetadata.xml?appid=eb327790-42a1-4a06-ba33-eddd365cfccb"
+
+      refreshPeriod: 1440
+
+      displayNameAttributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+      usernameAttributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+      emailAttributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+
+      binding: "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+
+      maximumAuthenticationLifetime: 86400
 
   remotingSecurity:
     enabled: true
