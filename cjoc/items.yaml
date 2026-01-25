@@ -1,0 +1,37 @@
+removeStrategy:
+  items: NONE
+  rbac: SYNC
+
+items:
+  - kind: managedController
+    name: mc-alpha
+    displayName: "Managed Controller Alpha"
+    description: "First managed controller created via CJOC CasC"
+
+    properties:
+      - configurationAsCode:
+          bundle: mc-alpha-bundle
+
+      - healthReporting:
+          enabled: false
+
+      - licensing:
+          strategy:
+            perUserLicensingStrategy: {}
+
+    configuration:
+      kubernetes:
+        clusterEndpointId: default
+        domain: mc-alpha
+
+        cpus: 1.0
+        memory: 2048
+        disk: 20
+        storageClassName: nfs-client   # ✅ IMPORTANT
+
+        fsGroup: "1000"
+
+        terminationGracePeriodSeconds: 600
+        readinessInitialDelaySeconds: 30
+        livenessInitialDelaySeconds: 300
+

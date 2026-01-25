@@ -1,0 +1,10 @@
+id: mc-alpha-bundle
+version: "1"
+apiVersion: "2"
+
+jcasc:
+  - jenkins.yaml
+
+rbac:
+  - rbac.yaml
+
