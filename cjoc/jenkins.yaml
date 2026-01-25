@@ -1,11 +1,9 @@
 jenkins:
   systemMessage: |
     CloudBees Operations Center
-    Authentication: LOCAL USER DATABASE
-    Bootstrap mode
+    Bootstrap mode – BASIC AUTH
 
   numExecutors: 0
-  mode: NORMAL
 
   securityRealm:
     local:
@@ -14,8 +12,4 @@ jenkins:
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
-
-unclassified:
-  location:
-    url: https://cjoc.14.195.56.220.nip.io/
 
