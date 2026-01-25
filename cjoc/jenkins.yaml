@@ -1,15 +1,21 @@
 jenkins:
   systemMessage: |
     CloudBees Operations Center
-    Bootstrap mode – BASIC AUTH
+    Basic authentication
+    Managed by CasC
 
   numExecutors: 0
+  mode: NORMAL
 
   securityRealm:
     local:
       allowsSignup: false
+      users:
+        - id: admin
+          password: ${CJOC_ADMIN_PASSWORD}
 
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+  authorizationStrategy: cloudBeesRoleBasedAccessControl
+
+remotingSecurity:
+  enabled: true
 
