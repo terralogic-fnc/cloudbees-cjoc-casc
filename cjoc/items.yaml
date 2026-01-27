@@ -6,7 +6,7 @@ items:
   - kind: managedController
     name: mc-alpha
     displayName: Managed Controller Alpha
-    description: Managed controller created via OC CasC
+    description: 🔒 Controller description managed ONLY by OC CasC
 
     properties:
       - healthReporting:
