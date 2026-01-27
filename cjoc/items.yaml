@@ -1,16 +1,16 @@
 removeStrategy:
   items: NONE
-  rbac: NONE
+  rbac: SYNC
 
 items:
   - kind: managedController
     name: mc-alpha
-    displayName: "Managed Controller Alpha"
-    description: "First managed controller created via CJOC CasC"
+    displayName: Managed Controller Alpha
+    description: Managed controller created via OC CasC
 
     properties:
       - configurationAsCode:
-          bundle: mc-alpha
+          bundle: mc-alpha-bundle
 
       - healthReporting:
           enabled: false
@@ -25,8 +25,4 @@ items:
         disk: 20
         storageClassName: nfs-client
         fsGroup: "1000"
-
-        terminationGracePeriodSeconds: 600
-        readinessInitialDelaySeconds: 30
-        livenessInitialDelaySeconds: 300
 

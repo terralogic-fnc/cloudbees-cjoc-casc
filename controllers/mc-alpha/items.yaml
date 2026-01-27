@@ -1,0 +1,9 @@
+removeStrategy:
+  items: NONE
+  rbac: NONE
+
+items:
+  - kind: folder
+    name: pipelines
+    description: Folder for pipelines
+
