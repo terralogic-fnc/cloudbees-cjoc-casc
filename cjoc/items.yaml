@@ -21,4 +21,21 @@ items:
         disk: 20
         storageClassName: nfs-client
         fsGroup: "1000"
+  - kind: managedController
+    name: mc-test
+    displayName: Managed Controller Test
+    description: 🔬 Created ONLY via CasC (test)
 
+    properties:
+      - configurationAsCode:
+          bundle: mc-test
+
+    configuration:
+      kubernetes:
+        clusterEndpointId: default
+        domain: mc-test
+        cpus: 0.5
+        memory: 2048
+        disk: 10
+        storageClassName: nfs-client
+        fsGroup: "1000"

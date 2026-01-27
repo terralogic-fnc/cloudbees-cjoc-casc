@@ -1,0 +1,7 @@
+jenkins:
+  systemMessage: |
+    🔬 This controller was created ONLY via CasC
+    If you see this, CasC works.
+
+  numExecutors: 0
+
