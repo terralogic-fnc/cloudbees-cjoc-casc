@@ -9,8 +9,6 @@ items:
     description: Managed controller created via OC CasC
 
     properties:
-      - configurationAsCode:
-          bundle: mc-alpha
       - healthReporting:
           enabled: false
 
