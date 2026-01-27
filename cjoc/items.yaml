@@ -10,8 +10,7 @@ items:
 
     properties:
       - configurationAsCode:
-          bundle: mc-alpha-bundle
-
+          bundle: mc-alpha
       - healthReporting:
           enabled: false
 
@@ -19,7 +18,6 @@ items:
       kubernetes:
         clusterEndpointId: default
         domain: mc-alpha
-
         cpus: 1.0
         memory: 4096
         disk: 20
