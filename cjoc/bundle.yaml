@@ -1,4 +1,4 @@
-apiVersion: "1"
+apiVersion: "2"
 id: "cjoc-minimal"
 version: "2"
 description: "Minimal CJOC CasC bundle"
