@@ -18,7 +18,7 @@ items:
       kubernetes:
         clusterEndpointId: default
         domain: mc-alpha
-        cpus: 1.0
+        cpus: "1.0"
         memory: 4096
         disk: 20
         storageClassName: nfs-client

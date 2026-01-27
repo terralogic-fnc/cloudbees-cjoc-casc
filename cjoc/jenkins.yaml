@@ -1,3 +1,22 @@
+
+#jenkins:
+#  systemMessage: |
+#    CloudBees Operations Center
+#    Basic authentication
+#    Managed by CasC
+
+#  numExecutors: 0
+#  mode: NORMAL
+
+#  securityRealm:
+#    local:
+#      allowsSignup: false
+#      users:
+#        - id: admin
+#          password: ${CJOC_ADMIN_PASSWORD}
+
+#  authorizationStrategy: cloudBeesRoleBasedAccessControl
+
 jenkins:
   systemMessage: |
     CloudBees Operations Center
@@ -13,7 +32,6 @@ jenkins:
           password: ${CJOC_ADMIN_PASSWORD}
 
   authorizationStrategy: cloudBeesRoleBasedAccessControl
-
   remotingSecurity:
     enabled: true
 
@@ -23,6 +41,14 @@ jenkins:
 
 cloudBeesCasCServer:
   visibility: true
+
+
+beekeeper:
+  enabled: true
+  upgrades:
+    autoUpgradePlugins: true
+    autoDowngradePlugins: false
+
 
 unclassified:
   cascAutoControllerProvisioning:
@@ -34,41 +60,4 @@ unclassified:
 
   location:
     url: https://cjoc.14.195.56.220.nip.io/cjoc
-
-beekeeper:
-  enabled: true
-  upgrades:
-    autoUpgradePlugins: true
-    autoDowngradePlugins: false
-
-masterprovisioning:
-  kubernetes:
-    clusterEndpoints:
-      - id: default
-        name: kubernetes
-        jenkinsUrl: http://cjoc.cloudbees.svc.cluster.local/cjoc/
-        ingressClass: nginx
-
-    cpus: "1.0"
-    memory: 4096
-    disk: 20
-    fsGroup: "1000"
-
-    globalJavaOptions: >
-      -Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.541.1.35570
-      -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents
-      -Dcom.cloudbees.networking.useSubdomain=false
-      -Dcom.cloudbees.networking.protocol=https
-      -Dcom.cloudbees.networking.hostname=cjoc.14.195.56.220.nip.io
-      -Dcom.cloudbees.networking.port=443
-      -Dcom.cloudbees.networking.operationsCenterName=cjoc
-
-    javaOptions: >
-      -XshowSettings:vm
-      -XX:+AlwaysPreTouch
-      -XX:+UseG1GC
-      -XX:+DisableExplicitGC
-      -XX:+ParallelRefProcEnabled
-      -XX:+UseStringDeduplication
-      -Dhudson.slaves.NodeProvisioner.initialDelay=0
 
