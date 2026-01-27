@@ -1,6 +1,6 @@
 removeStrategy:
   items: NONE
-  rbac: SYNC
+  rbac: NONE
 
 items:
   - kind: managedController
@@ -15,10 +15,6 @@ items:
       - healthReporting:
           enabled: false
 
-      - licensing:
-          strategy:
-            perUserLicensingStrategy: {}
-
     configuration:
       kubernetes:
         clusterEndpointId: default
@@ -27,8 +23,7 @@ items:
         cpus: 1.0
         memory: 2048
         disk: 20
-        storageClassName: nfs-client   # ✅ IMPORTANT
-
+        storageClassName: nfs-client
         fsGroup: "1000"
 
         terminationGracePeriodSeconds: 600
