@@ -1,0 +1,6 @@
+jenkins:
+  systemMessage: |
+    🔬 This controller Blue was created ONLY via CasC
+    If you see this, CasC works.
+
+  numExecutors: 0

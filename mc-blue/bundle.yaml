@@ -1,0 +1,7 @@
+apiVersion: "2"
+id: "mc-test"
+version: "1.0"
+description: "Test controller Blue created via CasC"
+
+jcasc:
+  - jenkins/jenkins.yaml
