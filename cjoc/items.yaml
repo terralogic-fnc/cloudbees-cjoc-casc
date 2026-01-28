@@ -1,5 +1,5 @@
 removeStrategy:
-  items: NONE
+  items: SYNC
   rbac: SYNC
 
 items:
@@ -21,6 +21,8 @@ items:
         disk: 20
         storageClassName: nfs-client
         fsGroup: "1000"
+
+############################################################################
   - kind: managedController
     name: mc-test
     displayName: Managed Controller Test
