@@ -28,10 +28,7 @@ items:
     displayName: Managed Controller Test
     description: 🔬 Created ONLY via CasC (test)
 
-    properties:
-      - configurationAsCode:
-          bundle: mc-test
-
+    
     configuration:
       kubernetes:
         clusterEndpointId: default
