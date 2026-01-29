@@ -4,7 +4,7 @@ jenkins:
     Authentication: Local (Username / Password)
     Managed by CloudBees CasC
 
-  numExecutors: 0
+  numExecutors: 1
   mode: NORMAL
 
   securityRealm:
