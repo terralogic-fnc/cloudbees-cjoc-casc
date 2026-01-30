@@ -16,7 +16,7 @@
 #          password: ${CJOC_ADMIN_PASSWORD}
 
 #  authorizationStrategy: cloudBeesRoleBasedAccessControl
-
+########################################################################################
 jenkins:
   systemMessage: |
     CloudBees Operations Center
@@ -38,6 +38,9 @@ jenkins:
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
+  clouds:
+    - operationsCenterAgentProvisioningService
+
 
 cloudBeesCasCServer:
   visibility: true
