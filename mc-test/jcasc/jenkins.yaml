@@ -3,5 +3,31 @@ jenkins:
     🔬 This controller was created ONLY via CasC
     If you see this, CasC works.
 
+  # Best practice: no built-in executors
   numExecutors: 0
+
+  # ✅ Kubernetes pod-based agents for THIS controller
+  clouds:
+    - kubernetes:
+        name: k8s-agents
+        namespace: cloudbees-builds
+        serverUrl: https://kubernetes.default.svc
+        skipTlsVerify: true
+
+        # Agent lifecycle
+        podRetention: never
+        idleMinutes: 1
+        containerCapStr: "10"
+
+        templates:
+          - name: ephemeral-maven
+            label: ephemeral-maven
+            serviceAccount: jenkins-agents
+            nodeUsageMode: EXCLUSIVE
+
+            containers:
+              - name: maven
+                image: maven:3.9.6-eclipse-temurin-17
+                command: cat
+                ttyEnabled: true
 
