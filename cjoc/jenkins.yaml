@@ -40,7 +40,7 @@ jenkins:
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
-    - operationsCenterAgentProvisioningService: {}
+
 
 
 cloudBeesCasCServer:
