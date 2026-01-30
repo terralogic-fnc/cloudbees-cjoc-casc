@@ -40,9 +40,6 @@ jenkins:
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
-
-#  # ✅ FIX: map, not string
-# # clouds:
     - operationsCenterAgentProvisioningService: {}
 
 
