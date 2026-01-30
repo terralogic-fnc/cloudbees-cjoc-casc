@@ -21,6 +21,7 @@ jenkins:
   systemMessage: |
     CloudBees Operations Center
     Managed by CasC
+
   numExecutors: 0
   mode: NORMAL
 
@@ -32,14 +33,17 @@ jenkins:
           password: ${CJOC_ADMIN_PASSWORD}
 
   authorizationStrategy: cloudBeesRoleBasedAccessControl
+
   remotingSecurity:
     enabled: true
 
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
+
+  # ✅ FIX: map, not string
   clouds:
-    - operationsCenterAgentProvisioningService
+    - operationsCenterAgentProvisioningService: {}
 
 
 cloudBeesCasCServer:
