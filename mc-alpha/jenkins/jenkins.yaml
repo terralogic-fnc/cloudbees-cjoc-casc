@@ -1,30 +1,84 @@
+#jenkins:
+#  systemMessage: |
+#    Managed Controller: mc-alpha
+#    Authentication: Local (Username / Password)
+#    Managed by CloudBees CasC
+
+#  numExecutors: 1
+#  mode: NORMAL
+
+#  securityRealm:
+#    local:
+#      allowsSignup: false
+#      users:
+#        - id: admin
+#          password: ${CONTROLLER_ADMIN_PASSWORD}
+
+#  authorizationStrategy:
+#    cloudBeesRoleBasedAccessControl: {}
+
+#security:
+#  securitySettingsEnforcement:
+#    global:
+#      realmAndAuthorization:
+#        canCustomMapping: false
+#        canOverride: true
+#        defaultMappingFactory: "restrictedEquivalentRAMF"
+
+#cloudBeesCasCServer:
+#  visibility: true
+
 jenkins:
   systemMessage: |
     Managed Controller: mc-alpha
     Authentication: Local (Username / Password)
-    Managed by CloudBees CasC
+    Managed by CloudBees CasC (GitOps)
 
-  numExecutors: 1
+  # Recommended: controllers should not run builds directly
+  numExecutors: 0
   mode: NORMAL
 
+  # -------------------------------
+  # AUTHENTICATION (WHO you are)
+  # -------------------------------
   securityRealm:
     local:
       allowsSignup: false
-      users:
-        - id: admin
-          password: ${CONTROLLER_ADMIN_PASSWORD}
 
+      users:
+        # Controller Administrator (maps to controller-admin role)
+        - id: mc-alpha-admin
+          password: ${MC_ALPHA_ADMIN_PASSWORD}
+
+        # Job Manager (maps to controller-manager role)
+        - id: mc-alpha-manager
+          password: manager123
+
+        # Developer (maps to controller-developer role)
+        - id: mc-alpha-dev
+          password: dev123
+
+  # -------------------------------
+  # AUTHORIZATION (WHAT you can do)
+  # -------------------------------
   authorizationStrategy:
     cloudBeesRoleBasedAccessControl: {}
 
+# ---------------------------------
+# Enforce CasC-only security control
+# ---------------------------------
 security:
   securitySettingsEnforcement:
     global:
       realmAndAuthorization:
-        canCustomMapping: false
+        canCustomMapping: false   # Users cannot switch auth realm
         canOverride: true
         defaultMappingFactory: "restrictedEquivalentRAMF"
 
+# ---------------------------------
+# CasC visibility (safe to keep)
+# ---------------------------------
 cloudBeesCasCServer:
   visibility: true
+
 

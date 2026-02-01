@@ -5,3 +5,7 @@ description: "Test controller Blue created via CasC"
 
 jcasc:
   - jenkins/jenkins.yaml
+
+rbac:
+ - rbac/rbac.yaml
+ 

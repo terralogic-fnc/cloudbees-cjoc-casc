@@ -1,6 +1,52 @@
+#jenkins:
+#  systemMessage: |
+#    🔬 This controller Blue was created ONLY via CasC
+#    If you see this, CasC works.
+
+#  numExecutors: 0
+
 jenkins:
   systemMessage: |
-    🔬 This controller Blue was created ONLY via CasC
-    If you see this, CasC works.
+    Managed Controller: mc-blue
+    Authentication: Local (Username / Password)
+    Authorization: CloudBees RBAC
+    Managed fully via CloudBees CasC (GitOps)
 
+  # Controllers should not run builds directly
   numExecutors: 0
+  mode: NORMAL
+
+  # -------------------------------------------------
+  # AUTHENTICATION (WHO can log in)
+  # -------------------------------------------------
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        # This user MUST exist because it is referenced in rbac.yaml
+        - id: mc-blue-admin
+          password: ${MC_BLUE_ADMIN_PASSWORD}
+
+  # -------------------------------------------------
+  # AUTHORIZATION (WHAT they can do)
+  # -------------------------------------------------
+  authorizationStrategy:
+    cloudBeesRoleBasedAccessControl: {}
+
+# -------------------------------------------------
+# Enforce CasC-only control of security
+# -------------------------------------------------
+security:
+  securitySettingsEnforcement:
+    global:
+      realmAndAuthorization:
+        canCustomMapping: false     # Prevent switching auth strategy in UI
+        canOverride: true
+        defaultMappingFactory: "restrictedEquivalentRAMF"
+
+# -------------------------------------------------
+# CasC bundle visibility (safe & recommended)
+# -------------------------------------------------
+cloudBeesCasCServer:
+  visibility: true
+

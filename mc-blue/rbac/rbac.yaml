@@ -1,0 +1,17 @@
+removeStrategy:
+  rbac: SYNC
+
+roles:
+  - name: controller-admin
+    permissions:
+      - hudson.model.Hudson.Administer
+
+groups:
+  - name: MC-BLUE-ADMINS
+    roles:
+      - name: controller-admin
+        grantedAt: current
+    members:
+      users:
+        - mc-blue-admin
+
