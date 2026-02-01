@@ -5,48 +5,41 @@
 
 #  numExecutors: 0
 
-jenkins:
-  systemMessage: |
-    Managed Controller: mc-blue
-    Authentication: Local (Username / Password)
-    Authorization: CloudBees RBAC
-    Managed fully via CloudBees CasC (GitOps)
 
-  # Controllers should not run builds directly
-  numExecutors: 0
-  mode: NORMAL
-
-  # -------------------------------------------------
-  # AUTHENTICATION (WHO can log in)
-  # -------------------------------------------------
-  securityRealm:
-    local:
-      allowsSignup: false
-      users:
-        # This user MUST exist because it is referenced in rbac.yaml
-        - id: mc-blue-admin
-          password: ${MC_BLUE_ADMIN_PASSWORD}
-
-  # -------------------------------------------------
-  # AUTHORIZATION (WHAT they can do)
-  # -------------------------------------------------
-  authorizationStrategy:
-    cloudBeesRoleBasedAccessControl: {}
-
-# -------------------------------------------------
-# Enforce CasC-only control of security
-# -------------------------------------------------
-security:
-  securitySettingsEnforcement:
-    global:
-      realmAndAuthorization:
-        canCustomMapping: false     # Prevent switching auth strategy in UI
-        canOverride: true
-        defaultMappingFactory: "restrictedEquivalentRAMF"
-
-# -------------------------------------------------
 # CasC bundle visibility (safe & recommended)
 # -------------------------------------------------
-cloudBeesCasCServer:
-  visibility: true
+removeStrategy:
+  items: NONE
+  rbac: SYNC
+
+items:
+  - kind: managedController
+    name: mc-blue
+    displayName: Blue Managed Controller
+    description: Blue environment managed controller
+
+    groups:
+      - name: MC-BLUE-ADMINS
+        members:
+          users:
+            - mc-blue-admin
+        roles:
+          - name: controller-admin   # ✅ MATCHES rbac.yaml
+
+    properties:
+      - configurationAsCode:
+          bundle: mc-blue
+      - healthReporting:
+          enabled: true
+
+    configuration:
+      kubernetes:
+        clusterEndpointId: default
+        domain: blue
+        storageClassName: nfs-client
+        fsGroup: "1000"
+
+        memory: 3072
+        cpus: 0.5
+        disk: 15
 
