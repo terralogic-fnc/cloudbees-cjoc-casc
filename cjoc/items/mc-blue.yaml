@@ -1,21 +1,12 @@
 removeStrategy:
   items: NONE
-  rbac: SYNC
+  rbac: NONE   # 🔒 CRITICAL
 
 items:
   - kind: managedController
     name: mc-blue
     displayName: Blue Managed Controller
     description: Blue environment managed controller
-
-    groups:
-      - name: Blue Developers
-        members:
-          users:
-            - bluedev
-            - blueadmin
-        roles:
-          - name: developer
 
     properties:
       - configurationAsCode:
@@ -35,12 +26,9 @@ items:
         clusterEndpointId: default
         domain: blue
         allowExternalAgents: false
-
-        # ✅ Same storage class as mc-test
         storageClassName: nfs-client
         fsGroup: "1000"
 
-        # ✅ HA + autoscaling (fixed values)
         replication:
           config:
             replicas: 2
@@ -50,24 +38,3 @@ items:
         memory: 3072
         cpus: 0.5
         disk: 15
-
-        terminationGracePeriodSeconds: 1200
-        readinessInitialDelaySeconds: 30
-        readinessTimeoutSeconds: 5
-        readinessFailureThreshold: 100
-        livenessInitialDelaySeconds: 300
-        livenessPeriodSeconds: 10
-        livenessTimeoutSeconds: 10
-
-        javaOptions: >
-          -Denv=blue
-          -Dcontroller.color=blue
-
-        yaml: |-
-          apiVersion: apps/v1
-          kind: StatefulSet
-          metadata:
-            labels:
-              environment: blue
-              controller: mc-blue
-
