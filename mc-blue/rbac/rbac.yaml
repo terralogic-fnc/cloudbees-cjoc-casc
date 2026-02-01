@@ -1,17 +1,34 @@
 removeStrategy:
+  items: NONE
   rbac: SYNC
 
-roles:
-  - name: controller-admin
-    permissions:
-      - hudson.model.Hudson.Administer
+items:
+  - kind: managedController
+    name: mc-blue
+    displayName: Blue Managed Controller
+    description: Blue environment managed controller
 
-groups:
-  - name: MC-BLUE-ADMINS
-    roles:
-      - name: controller-admin
-        grantedAt: current
-    members:
-      users:
-        - mc-blue-admin
+    groups:
+      - name: MC-BLUE-ADMINS
+        members:
+          users:
+            - mc-blue-admin
+        roles:
+          - name: controller-admin   # ✅ MATCHES rbac.yaml
 
+    properties:
+      - configurationAsCode:
+          bundle: mc-blue
+      - healthReporting:
+          enabled: true
+
+    configuration:
+      kubernetes:
+        clusterEndpointId: default
+        domain: blue
+        storageClassName: nfs-client
+        fsGroup: "1000"
+
+        memory: 3072
+        cpus: 0.5
+        disk: 15
