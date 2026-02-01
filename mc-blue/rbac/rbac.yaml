@@ -1,16 +1,30 @@
 removeStrategy:
-  rbac: SYNC   # 🔒 Enforce RBAC strictly from CasC (no UI drift)
+  rbac: SYNC
 
 roles:
   - name: controller-admin
     permissions:
       - hudson.model.Hudson.Administer
 
+  - name: developer
+    permissions:
+      - hudson.model.Item.Read
+      - hudson.model.Item.Build
+      - hudson.model.Item.Configure
+
 groups:
-  - name: MC-ALPHA-ADMINS
+  - name: MC-BLUE-ADMINS
     roles:
       - name: controller-admin
         grantedAt: current
     members:
       users:
-        - admin
+        - blueadmin
+
+  - name: BLUE-DEVELOPERS
+    roles:
+      - name: developer
+        grantedAt: current
+    members:
+      users:
+        - bluedev
