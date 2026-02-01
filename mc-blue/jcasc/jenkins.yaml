@@ -8,38 +8,32 @@
 
 # CasC bundle visibility (safe & recommended)
 # -------------------------------------------------
-removeStrategy:
-  items: NONE
-  rbac: SYNC
+jenkins:
+  systemMessage: |
+    Managed Controller: mc-alpha
+    Authentication: Local (Username / Password)
+    Managed by CloudBees CasC
 
-items:
-  - kind: managedController
-    name: mc-blue
-    displayName: Blue Managed Controller
-    description: Blue environment managed controller
+  numExecutors: 1
+  mode: NORMAL
 
-    groups:
-      - name: MC-BLUE-ADMINS
-        members:
-          users:
-            - mc-blue-admin
-        roles:
-          - name: controller-admin   # ✅ MATCHES rbac.yaml
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: admin
+          password: ${CONTROLLER_ADMIN_PASSWORD}
 
-    properties:
-      - configurationAsCode:
-          bundle: mc-blue
-      - healthReporting:
-          enabled: true
+  authorizationStrategy:
+    cloudBeesRoleBasedAccessControl: {}
 
-    configuration:
-      kubernetes:
-        clusterEndpointId: default
-        domain: blue
-        storageClassName: nfs-client
-        fsGroup: "1000"
+security:
+  securitySettingsEnforcement:
+    global:
+      realmAndAuthorization:
+        canCustomMapping: false
+        canOverride: true
+        defaultMappingFactory: "restrictedEquivalentRAMF"
 
-        memory: 3072
-        cpus: 0.5
-        disk: 15
-
+cloudBeesCasCServer:
+  visibility: true
