@@ -1,15 +1,3 @@
-#plugins:
-  # REQUIRED for items.yaml (controllers)
-#  - id: cloudbees-casc-items-api
-#  - id: cloudbees-casc-items-server
-#  - id: cloudbees-casc-items-commons
-
-  # REQUIRED for Git / SCM bundle retriever
-#  - id: cloudbees-casc-bundle-retriever
-
-  # Core CasC (usually already present, safe to declare)
-#  - id: configuration-as-code
-
 plugins:
   # REQUIRED for items.yaml (controllers)
   - id: cloudbees-casc-items-api
@@ -22,7 +10,19 @@ plugins:
   # Core CasC (usually already present, safe to declare)
   - id: configuration-as-code
 
+#plugins:
+  # REQUIRED for items.yaml (controllers)
+  #- id: cloudbees-casc-items-api
+  #- id: cloudbees-casc-items-server
+  #- id: cloudbees-casc-items-commons
+
+  # REQUIRED for Git / SCM bundle retriever
+  #- id: cloudbees-casc-bundle-retriever
+
+  # Core CasC (usually already present, safe to declare)
+  #- id: configuration-as-code
+
   # 🔑 REQUIRED for Operations Center Agent Provisioning Service
-  - id: operations-center-agent-controller
+  #- id: operations-center-agent-controller
 
 
