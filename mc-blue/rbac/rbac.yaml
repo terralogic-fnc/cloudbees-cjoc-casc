@@ -1,34 +1,16 @@
 removeStrategy:
-  items: NONE
-  rbac: SYNC
+  rbac: SYNC   # 🔒 Enforce RBAC strictly from CasC (no UI drift)
 
-items:
-  - kind: managedController
-    name: mc-blue
-    displayName: Blue Managed Controller
-    description: Blue environment managed controller
+roles:
+  - name: controller-admin
+    permissions:
+      - hudson.model.Hudson.Administer
 
-    groups:
-      - name: MC-BLUE-ADMINS
-        members:
-          users:
-            - mc-blue-admin
-        roles:
-          - name: controller-admin   # ✅ MATCHES rbac.yaml
-
-    properties:
-      - configurationAsCode:
-          bundle: mc-blue
-      - healthReporting:
-          enabled: true
-
-    configuration:
-      kubernetes:
-        clusterEndpointId: default
-        domain: blue
-        storageClassName: nfs-client
-        fsGroup: "1000"
-
-        memory: 3072
-        cpus: 0.5
-        disk: 15
+groups:
+  - name: MC-ALPHA-ADMINS
+    roles:
+      - name: controller-admin
+        grantedAt: current
+    members:
+      users:
+        - admin
