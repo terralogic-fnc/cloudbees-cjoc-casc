@@ -1,17 +1,21 @@
 removeStrategy:
   rbac: SYNC
+  # SYNC = Git is the single source of truth for CJOC RBAC
 
 roles:
   - name: cjoc-admin
+    # Full administrative access to Operations Center ONLY
     permissions:
       - hudson.model.Hudson.Administer
 
 groups:
   - name: CJOC-Admins
+    # Platform administrators
     roles:
       - name: cjoc-admin
         grantedAt: current
+        # Applies only at CJOC scope (no inheritance)
     members:
       users:
         - admin
-
+        # Authenticated via CJOC admin password secret
